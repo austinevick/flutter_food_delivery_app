@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_food_delivery_app/data/data.dart';
+import 'package:flutter_food_delivery_app/screens/cart_screen.dart';
 import 'package:flutter_food_delivery_app/widgets/rating_stars.dart';
 import 'package:flutter_food_delivery_app/widgets/recent_order.dart';
 
@@ -19,7 +20,9 @@ class _HomeScreenState extends State<HomeScreen> {
               IconButton(icon: Icon(Icons.account_circle), onPressed: () {}),
           actions: [
             FlatButton(
-                onPressed: () {},
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) => CartScreen(),
+                    )),
                 child: Text(
                   'Cart (${currentUser.cart.length})',
                   style: TextStyle(color: Colors.white, fontSize: 20),
@@ -78,50 +81,54 @@ class _HomeScreenState extends State<HomeScreen> {
           onTap: () => Navigator.of(context).push(MaterialPageRoute(
             builder: (_) => RestaurantScreen(restaurant: restaurant),
           )),
-          child: Container(
-            margin: EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 10,
-            ),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(
-                  width: 1.0,
-                  color: Colors.grey[200],
-                ),
-                borderRadius: BorderRadius.circular(
-                  15,
-                )),
-            child: Row(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Image(
-                      height: 150,
-                      width: 150,
-                      fit: BoxFit.cover,
-                      image: AssetImage(
-                        restaurant.imageUrl,
-                      )),
-                ),
-                Container(
-                  margin: EdgeInsets.all(12),
-                  child: Column(
-                    children: [
-                      Text(
-                        restaurant.name,
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      RatingStars(restaurant.rating),
-                      Text(restaurant.address),
-                      Text('0.2 miles away'),
-                    ],
+          child: Hero(
+            tag: restaurant.imageUrl,
+            child: Container(
+              margin: EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 10,
+              ),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(
+                    width: 1.0,
+                    color: Colors.grey[200],
                   ),
-                )
-              ],
+                  borderRadius: BorderRadius.circular(
+                    15,
+                  )),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Image(
+                        height: 120,
+                        width: 120,
+                        fit: BoxFit.cover,
+                        image: AssetImage(
+                          restaurant.imageUrl,
+                        )),
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(12),
+                    child: Column(
+                      children: [
+                        Text(
+                          restaurant.name,
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        RatingStars(restaurant.rating),
+                        Text(restaurant.address),
+                        Text('0.2 miles away'),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),

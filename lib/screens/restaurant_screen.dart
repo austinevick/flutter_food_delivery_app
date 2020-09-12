@@ -152,35 +152,28 @@ class RestaurantScreenState extends State<RestaurantScreen> {
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[
-          Container(
-            height: 175.0,
-            width: 175.0,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(menuItem.imageUrl),
-                fit: BoxFit.cover,
-              ),
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-          ),
-          Container(
-            height: 175.0,
-            width: 175.0,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15.0),
-              gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [
-                  Colors.black.withOpacity(0.3),
-                  Colors.black87.withOpacity(0.3),
-                  Colors.black54.withOpacity(0.3),
-                  Colors.black38.withOpacity(0.3),
-                ],
-                stops: [0.1, 0.4, 0.6, 0.9],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              height: 175.0,
+              width: 175.0,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  colorFilter:
+                      ColorFilter.mode(Colors.black12, BlendMode.darken),
+                  image: AssetImage(menuItem.imageUrl),
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.circular(15.0),
               ),
             ),
           ),
+          Container(
+              height: 175.0,
+              width: 175.0,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15.0),
+              )),
           Positioned(
             bottom: 65.0,
             child: Column(
